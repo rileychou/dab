@@ -26,21 +26,14 @@ void loop()
   //constantly checking for moisture
   moistVal = analogRead(moistPin);
   
-  if(moistVal <= tooDry && received == '1'){
+  if(received == '1'){
+    received = 0;
     digitalWrite(motorPin, HIGH);
     delay(1000);
     digitalWrite(motorPin, LOW);
     delay(1000);
-    received = 0;
-  }
-  else if(moistVal >= tooWet && received == '1') {
-    digitalWrite(motorPin, HIGH);
-    delay(1000);
-    digitalWrite(motorPin, LOW);
-    delay(1000);
-    received = 0;
   }
   Serial.println(moistVal);
   bluetooth.print(moistVal);
-  delay(2500);
+  delay(500);
 }
